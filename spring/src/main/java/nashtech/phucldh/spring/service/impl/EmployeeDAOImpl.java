@@ -1,19 +1,17 @@
 package nashtech.phucldh.spring.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
-import javax.persistence.EntityManager;
-
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import nashtech.phucldh.spring.entity.Employee;
 import nashtech.phucldh.spring.responsitory.EmployeeResponsitory;
 import nashtech.phucldh.spring.service.EmployeeDAO;
 
+@Service
 public class EmployeeDAOImpl implements EmployeeDAO{
 	
 	private EmployeeResponsitory employeeResponsitory;
@@ -33,8 +31,8 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	@Override
 	@Transactional
 	public Employee getEmployeeById(Integer theId) {
-		Employee theCustomer = employeeResponsitory.findOne(theId);
-		return null;
+		Optional<Employee> theCustomer = employeeResponsitory.findById(theId);
+		return theCustomer.get();
 	}
 
 	@Override
