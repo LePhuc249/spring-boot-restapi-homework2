@@ -8,8 +8,6 @@ import nashtech.phucldh.spring.entity.Employee;
 public interface  EmployeeDAO {
 	
 	public List<Employee> findAll();
-	
-	public List<Integer> getListId();
 
 	public Employee findById(int theId);
 	

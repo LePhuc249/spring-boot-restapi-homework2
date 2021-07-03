@@ -1,6 +1,5 @@
 package nashtech.phucldh.spring.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,16 +25,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	public List<Employee> findAll() {
 		List<Employee> customers = employeeResponsitory.findAll();
 		return customers;
-	}
-	
-	@Override
-	public List<Integer> getListId() {
-		List<Employee> customers = employeeResponsitory.findAll();
-		List<Integer> listId = new ArrayList<>();
-		for (Employee employee : customers) {
-			listId.add(employee.getId());
-		}
-		return listId;
 	}
 
 	@Override

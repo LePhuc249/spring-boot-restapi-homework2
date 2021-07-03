@@ -46,14 +46,8 @@ public class EmployeeRestContoller {
 
 	@PutMapping
 	public Employee updateCustomer(@RequestBody Employee updateCustomer) {
-		List<Integer> listID = employeeDAO.getListId();
-		int count = 0;
-		for (Integer integer : listID) {
-			if (integer == updateCustomer.getId()) {
-				count++;
-			}
-		}
-		if (count < 1) {
+		Employee tempCustomer = employeeDAO.findById(updateCustomer.getId());
+		if (tempCustomer == null) {
 			throw new EmployeeNotFoundException("Customer id: " + updateCustomer.getId() + " not found!");
 		}
 		employeeDAO.save(updateCustomer);
