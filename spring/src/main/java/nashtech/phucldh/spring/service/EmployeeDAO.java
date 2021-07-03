@@ -9,9 +9,9 @@ public interface  EmployeeDAO {
 	
 	public List<Employee> findAll();
 
-	public Employee getEmployeeById(Integer theId);
+	public Employee findById(int theId);
 	
-	public Employee saveEmployee(Employee theEmployee);
+	public void save(Employee theEmployee);
 	
-	public void deleteEmployee(Integer theId);
+	public void deleteById(int theId);
 }

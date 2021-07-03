@@ -28,7 +28,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	@Override
-	public Employee getEmployeeById(Integer theId) {
+	public Employee findById(int theId) {
 		Optional<Employee> result  = employeeResponsitory.findById(theId);
 		Employee theEmployee = null;
 		if (result.isPresent()) {
@@ -40,12 +40,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	@Override
-	public Employee saveEmployee(Employee theEmployee) {
-		return employeeResponsitory.save(theEmployee);
+	public void save(Employee theEmployee) {
+		employeeResponsitory.save(theEmployee);
 	}
 
 	@Override
-	public void deleteEmployee(Integer theId) {
+	public void deleteById(int theId) {
 		employeeResponsitory.deleteById(theId);
 	}
 	

@@ -16,48 +16,47 @@ import nashtech.phucldh.spring.entity.Employee;
 import nashtech.phucldh.spring.exception.EmployeeNotFoundException;
 import nashtech.phucldh.spring.service.EmployeeDAO;
 
-
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeRestContoller {
-	
+
 	@Autowired
 	private EmployeeDAO employeeDAO;
-	
+
 	@GetMapping
-	public List<Employee> getListCustomer(){
+	public List<Employee> getListCustomer() {
 		return employeeDAO.findAll();
 	}
-	
+
 	@GetMapping("/{customerId}")
 	public Employee getCustomerByID(@PathVariable int customerId) {
-		Employee customerByID = employeeDAO.getEmployeeById(customerId);
+		Employee customerByID = employeeDAO.findById(customerId);
 		if (customerByID == null) {
 			throw new EmployeeNotFoundException("Customer id: " + customerId + " not found!");
 		}
 		return customerByID;
 	}
-	
+
 	@PostMapping
 	public Employee addCustomer(@RequestBody Employee newCustomer) {
 		newCustomer.setId(0);
-		employeeDAO.saveEmployee(newCustomer);
+		employeeDAO.save(newCustomer);
 		return newCustomer;
 	}
-	
+
 	@PutMapping
 	public Employee updateCustomer(@RequestBody Employee updateCustomer) {
-		employeeDAO.saveEmployee(updateCustomer);
+		employeeDAO.save(updateCustomer);
 		return updateCustomer;
 	}
-	
+
 	@DeleteMapping("/{customerId}")
 	public String deleteCustomer(@PathVariable int customerId) {
-		Employee tempCustomer = employeeDAO.getEmployeeById(customerId);
-		if(tempCustomer == null) {
+		Employee tempCustomer = employeeDAO.findById(customerId);
+		if (tempCustomer == null) {
 			throw new EmployeeNotFoundException("Customer id: " + customerId + " not found!");
 		}
-		employeeDAO.deleteEmployee(customerId);
+		employeeDAO.deleteById(customerId);
 		return "Delete customer id: " + customerId;
 	}
 }
