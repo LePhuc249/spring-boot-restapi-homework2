@@ -41,13 +41,13 @@ public class EmployeeRestContoller {
 	@PostMapping
 	public Employee addCustomer(@RequestBody Employee newCustomer) {
 		newCustomer.setId(0);
-		employeeDAO.createEmployee(newCustomer);
+		employeeDAO.saveEmployee(newCustomer);
 		return newCustomer;
 	}
 	
 	@PutMapping
 	public Employee updateCustomer(@RequestBody Employee updateCustomer) {
-		employeeDAO.updateEmployee(updateCustomer);
+		employeeDAO.saveEmployee(updateCustomer);
 		return updateCustomer;
 	}
 	
